@@ -1,4 +1,6 @@
 <template>
+  <jet-banner />
+
   <Menu />
   <div class="">
     <Header />
@@ -18,9 +20,19 @@ import Security from "./Welcome/Security.vue";
 import Services from "./Welcome/Services.vue";
 import Contact from "./Welcome/Contact.vue";
 import Footer from "./Welcome/Footer.vue";
+import JetBanner from "@/Jetstream/Banner.vue";
 
 export default {
-  components: { Menu, Header, Benefits, Security, Services, Contact, Footer },
+  components: {
+    Menu,
+    Header,
+    Benefits,
+    Security,
+    Services,
+    Contact,
+    Footer,
+    JetBanner,
+  },
   setup() {},
 };
 </script>

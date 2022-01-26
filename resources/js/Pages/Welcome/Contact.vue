@@ -72,13 +72,18 @@
         "
       >
         <div class="max-w-lg mx-auto lg:max-w-none">
-          <form action="#" method="POST" class="grid grid-cols-1 gap-y-6">
+          <form
+            @submit.prevent="submit"
+            method="POST"
+            class="grid grid-cols-1 gap-y-6"
+          >
             <div>
-              <label for="full-name" class="sr-only">Nombre</label>
+              <label for="name" class="sr-only">Nombre</label>
               <input
+                v-model="form.name"
                 type="text"
-                name="full-name"
-                id="full-name"
+                name="name"
+                id="name"
                 autocomplete="name"
                 class="
                   block
@@ -93,10 +98,18 @@
                 "
                 placeholder="Nombre"
               />
+              <p></p>
+              <JetInputError
+                v-if="form.errors.name"
+                message="El nombre es requerido para mandar un mensaje."
+                class="mt-2"
+              />
             </div>
+
             <div>
               <label for="email" class="sr-only">Correo electrónico</label>
               <input
+                v-model="form.email"
                 id="email"
                 name="email"
                 type="email"
@@ -114,10 +127,16 @@
                 "
                 placeholder="Correo electrónico"
               />
+              <JetInputError
+                v-if="form.errors.email"
+                message="El correo electrónico es requerido para mandar un mensaje."
+                class="mt-2"
+              />
             </div>
             <div>
               <label for="phone" class="sr-only">Teléfono</label>
               <input
+                v-model="form.phone"
                 type="text"
                 name="phone"
                 id="phone"
@@ -135,10 +154,16 @@
                 "
                 placeholder="Teléfono"
               />
+              <JetInputError
+                v-if="form.errors.phone"
+                message="El teléfono es requerido para mandar un mensaje."
+                class="mt-2"
+              />
             </div>
             <div>
               <label for="message" class="sr-only">Mensaje</label>
               <textarea
+                v-model="form.message"
                 id="message"
                 name="message"
                 rows="4"
@@ -154,6 +179,11 @@
                   rounded-md
                 "
                 placeholder="Mensaje"
+              />
+              <JetInputError
+                v-if="form.errors.message"
+                message="El mensaje es requerido para mandar un mensaje."
+                class="mt-2"
               />
             </div>
             <div>
@@ -191,11 +221,37 @@
 
 <script>
 import { MailIcon, PhoneIcon } from "@heroicons/vue/outline";
+import JetInputError from "@/Jetstream/InputError";
 
 export default {
   components: {
     MailIcon,
     PhoneIcon,
+    JetInputError,
+  },
+  data() {
+    return {
+      form: this.$inertia.form({
+        name: "",
+        email: "",
+        phone: "",
+        message: "",
+      }),
+    };
+  },
+  methods: {
+    submit() {
+      this.form.post(route("messages.store"), {
+        errorBag: "sendMessage",
+        preserveScroll: true,
+        onSuccess: () => {
+          this.form.name = "";
+          this.form.email = "";
+          this.form.phone = "";
+          this.form.message = "";
+        },
+      });
+    },
   },
 };
 </script>
