@@ -27,7 +27,7 @@ class MessageController extends Controller
             ];
 
             Notification::route('mail', [
-                'comercial@dazalogistics.com' => 'Daniel Isunza',
+                'daniel.isunza@dazalogistics.com' => 'Daniel Isunza',
             ])->notify(new MessageSent($message));
 
             new MessageSent($message);
