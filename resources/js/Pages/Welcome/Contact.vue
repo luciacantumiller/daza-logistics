@@ -55,7 +55,7 @@
                   class="flex-shrink-0 h-6 w-6 text-gray-400"
                   aria-hidden="true"
                 />
-                <span class="ml-3"> comercial@camir-express.com </span>
+                <span class="ml-3"> comercial@dazalogistics.com </span>
               </dd>
             </div>
           </dl>
