@@ -33,13 +33,6 @@
           <dl class="mt-8 text-base text-gray-500">
             <div class="mt-6">
               <dt class="sr-only">Teléfono</dt>
-              <dd class="flex">
-                <PhoneIcon
-                  class="flex-shrink-0 h-6 w-6 text-gray-400"
-                  aria-hidden="true"
-                />
-                <span class="ml-3"> +52 (81) 2465 2908 </span>
-              </dd>
               <dd class="flex mt-3">
                 <PhoneIcon
                   class="flex-shrink-0 h-6 w-6 text-gray-400"
